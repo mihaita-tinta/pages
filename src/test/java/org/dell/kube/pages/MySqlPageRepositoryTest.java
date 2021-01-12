@@ -32,7 +32,7 @@ public class MySqlPageRepositoryTest {
 
     @Test
     public void createInsertsAPageRecord() {
-        Page newPage = new Page("XYZ", "Bangalore", 123, "1234567890");
+        Page newPage = new Page("XYZ", "Bangalore", 123L, "1234567890");
         Page page = repo.create(newPage);
 
         Map<String, Object> foundPage = jdbcTemplate.queryForMap("Select * from pages where id = ?", page.getId());
@@ -46,13 +46,13 @@ public class MySqlPageRepositoryTest {
 
     @Test
     public void createReturnsTheCreatedPage() {
-        Page newPage = new Page("XYZ", "Bangalore", 123, "1234567890");
+        Page newPage = new Page("XYZ", "Bangalore", 123L, "1234567890");
         Page page = repo.create(newPage);
 
         assertThat(page.getId()).isNotNull();
         assertThat(page.getBusinessName()).isEqualTo("XYZ");
         assertThat(page.getAddress()).isEqualTo("Bangalore");
-        assertThat(page.getCategoryId()).isEqualTo(123);
+        assertThat(page.getCategoryId()).isEqualTo(123L);
         assertThat(page.getContactNumber()).isEqualTo("1234567890");
     }
 
@@ -103,14 +103,14 @@ public class MySqlPageRepositoryTest {
                 "INSERT INTO pages (id, business_name, address, category_id, contact_number) " +
                         "VALUES (1000, \"ABC\" , \"Bangalore\", 321, \"1876543210\")");
 
-        Page pageUpdates = new Page("ABC" , "Bangalore", 321, "987654321");
+        Page pageUpdates = new Page("ABC" , "Bangalore", 321L, "987654321");
 
         Page updatedPage = repo.update(pageUpdates,1000L);
 
         assertThat(updatedPage.getId()).isEqualTo(1000L);
         assertThat(updatedPage.getBusinessName()).isEqualTo("ABC");
         assertThat(updatedPage.getAddress()).isEqualTo("Bangalore");
-        assertThat(updatedPage.getCategoryId()).isEqualTo(321);
+        assertThat(updatedPage.getCategoryId()).isEqualTo(321L);
         assertThat(updatedPage.getContactNumber()).isEqualTo("987654321");
     }
 
@@ -120,7 +120,7 @@ public class MySqlPageRepositoryTest {
                 "INSERT INTO pages (id, business_name, address, category_id, contact_number) " +
                         "VALUES (1000, \"ABC\" , \"Bangalore\", 321, \"1876543210\")");
 
-        Page updatedPage = new Page("ABC" , "Bangalore", 321, "987654321");
+        Page updatedPage = new Page("ABC" , "Bangalore", 321L, "987654321");
 
         Page page = repo.update(updatedPage,1000L);
 
@@ -129,7 +129,7 @@ public class MySqlPageRepositoryTest {
         assertThat(foundPage.get("id")).isEqualTo(page.getId());
         assertThat(updatedPage.getBusinessName()).isEqualTo("ABC");
         assertThat(updatedPage.getAddress()).isEqualTo("Bangalore");
-        assertThat(updatedPage.getCategoryId()).isEqualTo(321);
+        assertThat(updatedPage.getCategoryId()).isEqualTo(321L);
         assertThat(updatedPage.getContactNumber()).isEqualTo("987654321");
     }
 
