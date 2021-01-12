@@ -1,8 +1,7 @@
-package org.dell.kube.pages;
+package org.dell.kube;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class PageApplication {

@@ -1,0 +1,21 @@
+apiVersion: v1
+data:
+  PAGE_CONTENT: Green-Pages from Yellow World!
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2021-01-11T13:48:10Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data:
+        .: {}
+        f:PAGE_CONTENT: {}
+    manager: kubectl
+    operation: Update
+    time: "2021-01-11T13:48:10Z"
+  name: pages-config-map
+  namespace: camden
+  resourceVersion: "5265174"
+  selfLink: /api/v1/namespaces/mihaita/configmaps/my-config
+  uid: 3eb2596d-0e9f-4943-b6c1-dc60cb50e5b5

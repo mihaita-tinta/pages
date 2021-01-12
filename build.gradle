@@ -8,6 +8,14 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+bootRun.environment([
+		"PAGE_CONTENT": "YellowPages",
+])
+
+test.environment([
+		"PAGE_CONTENT": "YellowPages",
+])
+
 repositories {
 	mavenCentral()
 }

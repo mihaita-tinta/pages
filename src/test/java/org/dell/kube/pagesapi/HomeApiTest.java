@@ -1,6 +1,6 @@
 package org.dell.kube.pagesapi;
 
-import org.dell.kube.pages.PageApplication;
+import org.dell.kube.PageApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

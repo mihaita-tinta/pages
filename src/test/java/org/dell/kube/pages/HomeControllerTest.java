@@ -12,7 +12,7 @@ class HomeControllerTest {
     @Test
     public void itSaysYellowPages() {
 
-        HomeController controller = new HomeController();
+        HomeController controller = new HomeController(null);
         assertThat(controller.getPage()).contains(yellowPages);
 
 
