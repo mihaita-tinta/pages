@@ -17,7 +17,7 @@ spec:
         app: pages
     spec:
       containers:
-        - image: mihaitatinta/pages:config
+        - image: mihaitatinta/pages:pipeline
           name: pages
           ports:
             - containerPort: 8080
