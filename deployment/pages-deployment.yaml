@@ -20,7 +20,7 @@ spec:
         tier: service
     spec:
       containers:
-        - image: mihaitatinta/pages:lab9
+        - image: mihaitatinta/pages:distributed
           name: pages
           ports:
             - containerPort: 8080

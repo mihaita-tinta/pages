@@ -2,6 +2,10 @@ package org.dell.kube.pages;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -13,15 +17,18 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class PageControllerTest {
+    @Mock
     private IPageRepository pageRepository;
+    @Mock
+    private CategoryClient categoryClient;
+    @Mock
+    private Category category;
+
+    @InjectMocks
     private PageController controller;
 
-    @BeforeEach
-    public void setUp() {
-        pageRepository = mock(IPageRepository.class);
-        controller = new PageController(pageRepository);
-    }
 
     @Test
     public void testCreate() {
@@ -37,9 +44,12 @@ public class PageControllerTest {
                 .when(pageRepository)
                 .create(any(Page.class));
 
+        when(categoryClient.findCategory(anyLong())).thenReturn(category);
+
         ResponseEntity response = controller.create(pageToCreate);
 
         verify(pageRepository).create(pageToCreate);
+        verify(categoryClient).findCategory(pageToCreate.categoryId);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(response.getBody()).isEqualTo(expectedResult);
     }
